@@ -3,14 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --ink: #1a3328;
-  --ink-light: #2d5045;
-  --cream: #f5f0e8;
-  --cream-dark: #ede7d8;
-  --gold: #c4954a;
-  --gold-light: #e0b876;
-  --sage: #8aaa94;
-  --sage-light: #c5d9cc;
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --primary-light: #dbeafe;
+  --primary-subtle: #eff6ff;
+  --surface: #ffffff;
+  --surface-alt: #f8fafc;
+  --border: #e2e8f0;
+  --heading: #0f172a;
+  --body: #334155;
+  --muted: #64748b;
+  --accent: #0ea5e9;
 }
 
 @layer base {
@@ -20,13 +23,13 @@
   }
 
   body {
-    @apply bg-cream text-ink font-sans;
+    @apply bg-white text-body font-sans;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif;
+    @apply font-serif text-heading;
   }
 
   * {
@@ -43,68 +46,51 @@
     @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 
-  .gold-line {
-    @apply w-12 h-0.5 bg-gold;
+  .blue-line {
+    @apply w-10 h-1 bg-primary rounded-full;
   }
 
   .btn-primary {
-    @apply inline-flex items-center gap-2 bg-gold text-white px-6 py-3 rounded-sm font-sans font-medium text-sm tracking-wide hover:bg-gold-light transition-colors duration-200;
+    @apply inline-flex items-center justify-center gap-2 bg-primary text-white px-6 py-3 rounded-pill font-sans font-medium text-sm hover:bg-primary-dark transition-colors duration-200 shadow-blue;
   }
 
   .btn-outline {
-    @apply inline-flex items-center gap-2 border border-gold text-gold px-6 py-3 rounded-sm font-sans font-medium text-sm tracking-wide hover:bg-gold hover:text-white transition-colors duration-200;
+    @apply inline-flex items-center justify-center gap-2 border border-primary text-primary px-6 py-3 rounded-pill font-sans font-medium text-sm hover:bg-primary hover:text-white transition-colors duration-200;
   }
 
   .btn-outline-white {
-    @apply inline-flex items-center gap-2 border border-white/50 text-white px-6 py-3 rounded-sm font-sans font-medium text-sm tracking-wide hover:border-gold hover:text-gold transition-colors duration-200;
+    @apply inline-flex items-center justify-center gap-2 border border-white/40 text-white px-6 py-3 rounded-pill font-sans font-medium text-sm hover:bg-white hover:text-primary transition-colors duration-200;
   }
 
-  .card-service {
-    @apply bg-white p-6 rounded-sm border-b-2 border-transparent hover:border-gold transition-all duration-300 shadow-sm hover:shadow-md;
+  .card {
+    @apply bg-white rounded-card border border-border shadow-card hover:shadow-card-hover transition-all duration-300;
   }
 
   .nav-link {
-    @apply text-sm font-medium text-ink/80 hover:text-gold transition-colors duration-200 relative;
+    @apply text-sm font-medium text-body hover:text-primary transition-colors duration-200;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-pill text-xs font-medium;
   }
 }
 
-/* Floating orbs animation */
+/* Floating shapes animation */
 @keyframes float {
-  0%, 100% { transform: translateY(0px) translateX(0px); }
-  33% { transform: translateY(-20px) translateX(10px); }
-  66% { transform: translateY(10px) translateX(-8px); }
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-16px); }
 }
 
 @keyframes float-slow {
-  0%, 100% { transform: translateY(0px) translateX(0px); }
-  50% { transform: translateY(-30px) translateX(15px); }
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-24px) rotate(5deg); }
 }
 
-.orb {
-  border-radius: 50%;
-  position: absolute;
-  filter: blur(60px);
-  animation: float 8s ease-in-out infinite;
-}
+.float { animation: float 6s ease-in-out infinite; }
+.float-slow { animation: float-slow 10s ease-in-out infinite; }
 
-.orb-slow {
-  border-radius: 50%;
-  position: absolute;
-  filter: blur(80px);
-  animation: float-slow 12s ease-in-out infinite;
-}
-
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: var(--cream);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--sage);
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--ink-light);
-}
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #2563eb; }

@@ -5,28 +5,32 @@ const steps = [
   {
     number: '01',
     title: 'קביעת תור',
-    description: 'פנו אלינו בטלפון או דרך האתר. נקבע תור בזמן הנוח לכם ונאשר את הפגישה.',
+    description: 'פנו אלינו בטלפון או דרך האתר. נקבע תור בזמן הנוח לכם.',
+    icon: '📅',
   },
   {
     number: '02',
     title: 'ביקור ראשוני',
-    description: 'שיחה מעמיקה על ההיסטוריה הרפואית, התסמינים ואיכות החיים — 45–60 דקות.',
+    description: 'שיחה מעמיקה על ההיסטוריה הרפואית והתסמינים — 45–60 דקות.',
+    icon: '🗣️',
   },
   {
     number: '03',
     title: 'בדיקות ואבחון',
-    description: 'בדיקות עקיצה, בדיקות דם ובדיקות נוספות לזיהוי מדויק של הגורמים לאלרגיה.',
+    description: 'בדיקות עקיצה, בדיקות דם ובדיקות נוספות לאבחון מדויק.',
+    icon: '🔬',
   },
   {
     number: '04',
     title: 'תוכנית טיפול',
-    description: 'תוכנית טיפול מותאמת אישית — תרופות, שינויי אורח חיים ואימונותרפיה במידת הצורך.',
+    description: 'תוכנית מותאמת אישית — תרופות, שינויי אורח חיים ואימונותרפיה.',
+    icon: '📋',
   },
 ]
 
 export default function Process() {
   return (
-    <section className="section-padding bg-ink">
+    <section className="section-padding bg-primary">
       <div className="container-main">
         <RevealWrapper>
           <SectionHeader
@@ -37,20 +41,22 @@ export default function Process() {
           />
         </RevealWrapper>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
-          {/* Connector line — desktop only */}
-          <div className="hidden lg:block absolute top-8 right-16 left-16 h-px bg-gold/20" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 relative">
+          {/* connector */}
+          <div className="hidden lg:block absolute top-10 right-[12.5%] left-[12.5%] h-px bg-white/20" />
 
           {steps.map((step, i) => (
             <RevealWrapper key={step.number} delay={i * 0.1}>
-              <div className="relative">
-                {/* Number */}
-                <div className="w-16 h-16 rounded-full border border-gold/40 flex items-center justify-center mb-6 relative bg-ink">
-                  <span className="font-serif text-xl font-bold text-gold">{step.number}</span>
+              <div className="relative bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 hover:bg-white/15 transition-colors">
+                {/* Number badge */}
+                <div className="flex items-center justify-between mb-5">
+                  <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center">
+                    <span className="text-lg">{step.icon}</span>
+                  </div>
+                  <span className="font-sans font-extrabold text-3xl text-white/20">{step.number}</span>
                 </div>
-
-                <h3 className="font-serif text-xl font-bold text-white mb-3">{step.title}</h3>
-                <p className="text-sage font-sans text-sm leading-relaxed">{step.description}</p>
+                <h3 className="font-sans font-bold text-lg text-white mb-2">{step.title}</h3>
+                <p className="text-white/70 font-sans text-sm leading-relaxed">{step.description}</p>
               </div>
             </RevealWrapper>
           ))}

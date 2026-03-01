@@ -3,30 +3,33 @@
 import { motion } from 'framer-motion'
 
 const stats = [
-  { value: '15+', label: 'שנות ניסיון' },
-  { value: '5,000+', label: 'מטופלים' },
-  { value: '12', label: 'תחומי טיפול' },
-  { value: '2', label: 'קליניקות' },
+  { value: '15+', label: 'שנות ניסיון', icon: '🏅' },
+  { value: '5,000+', label: 'מטופלים', icon: '👥' },
+  { value: '12', label: 'תחומי טיפול', icon: '🔬' },
+  { value: '2', label: 'קליניקות', icon: '📍' },
 ]
 
 export default function StatsBar() {
   return (
-    <section className="bg-ink-light py-10 md:py-12">
+    <section className="border-y border-border bg-surface-alt py-10">
       <div className="container-main">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-0 md:divide-x md:divide-x-reverse divide-white/10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="text-center px-4 py-2"
+              transition={{ duration: 0.45, delay: i * 0.08 }}
+              className="text-center"
             >
-              <p className="font-serif text-4xl md:text-5xl font-bold text-gold leading-none mb-1">
+              <div className="w-10 h-10 rounded-xl bg-primary-light flex items-center justify-center mx-auto mb-3 text-lg">
+                {stat.icon}
+              </div>
+              <p className="font-sans font-extrabold text-3xl md:text-4xl text-primary leading-none mb-1">
                 {stat.value}
               </p>
-              <p className="text-sage-light text-sm font-sans">{stat.label}</p>
+              <p className="text-muted text-sm font-sans">{stat.label}</p>
             </motion.div>
           ))}
         </div>

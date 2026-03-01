@@ -5,22 +5,21 @@ import RevealWrapper from '@/components/ui/RevealWrapper'
 import Button from '@/components/ui/Button'
 
 const categoryColors: Record<string, string> = {
-  'אלרגיות מזון': 'bg-amber-100 text-amber-700',
-  אסתמה: 'bg-sky-100 text-sky-700',
-  עור: 'bg-rose-100 text-rose-700',
-  כללי: 'bg-sage-light/50 text-ink-light',
+  'אלרגיות מזון': 'bg-amber-50 text-amber-600 border border-amber-200',
+  'אסתמה': 'bg-sky-50 text-sky-600 border border-sky-200',
+  'עור': 'bg-rose-50 text-rose-600 border border-rose-200',
+  'כללי': 'bg-primary-subtle text-primary border border-primary-light',
 }
 
-function formatDate(dateStr: string): string {
-  const date = new Date(dateStr)
-  return date.toLocaleDateString('he-IL', { year: 'numeric', month: 'long', day: 'numeric' })
+function formatDate(dateStr: string) {
+  return new Date(dateStr).toLocaleDateString('he-IL', { year: 'numeric', month: 'short', day: 'numeric' })
 }
 
 export default function BlogPreview() {
-  const latestPosts = posts.slice(0, 3)
+  const latest = posts.slice(0, 3)
 
   return (
-    <section className="section-padding bg-cream">
+    <section className="section-padding bg-surface-alt">
       <div className="container-main">
         <RevealWrapper>
           <SectionHeader
@@ -30,33 +29,31 @@ export default function BlogPreview() {
           />
         </RevealWrapper>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {latestPosts.map((post, i) => (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          {latest.map((post, i) => (
             <RevealWrapper key={post.slug} delay={i * 0.1}>
               <Link
                 href={`/blog/${post.slug}`}
-                className="group block bg-white rounded-sm overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 h-full"
+                className="card block group overflow-hidden hover:-translate-y-1 transition-transform duration-300 h-full"
               >
-                {/* Category tag */}
-                <div className="px-6 pt-6">
-                  <span
-                    className={`inline-block text-xs font-sans font-medium px-2.5 py-1 rounded-full ${categoryColors[post.category] ?? 'bg-gray-100 text-gray-600'}`}
-                  >
-                    {post.category}
-                  </span>
-                </div>
+                {/* Color bar */}
+                <div className="h-1 bg-primary" />
 
                 <div className="p-6">
-                  <h3 className="font-serif text-lg font-bold text-ink leading-snug mb-3 group-hover:text-gold transition-colors">
+                  <span className={`badge text-xs mb-4 ${categoryColors[post.category] ?? 'bg-gray-50 text-gray-600'}`}>
+                    {post.category}
+                  </span>
+
+                  <h3 className="font-sans font-bold text-base text-heading leading-snug mb-3 group-hover:text-primary transition-colors">
                     {post.title}
                   </h3>
-                  <p className="text-ink/60 font-sans text-sm leading-relaxed mb-4 line-clamp-3">
+                  <p className="text-muted font-sans text-sm leading-relaxed mb-5 line-clamp-2">
                     {post.excerpt}
                   </p>
 
-                  <div className="flex items-center justify-between pt-4 border-t border-ink/10">
-                    <span className="text-ink/40 font-sans text-xs">{formatDate(post.date)}</span>
-                    <span className="text-ink/40 font-sans text-xs">{post.readTime} דק׳ קריאה</span>
+                  <div className="flex items-center justify-between pt-4 border-t border-border">
+                    <span className="text-muted font-sans text-xs">{formatDate(post.date)}</span>
+                    <span className="text-muted font-sans text-xs">{post.readTime} דק׳</span>
                   </div>
                 </div>
               </Link>

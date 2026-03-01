@@ -10,47 +10,40 @@ const quickLinks = [
 ]
 
 const serviceLinks = [
-  { href: '/#services', label: 'אלרגיות מזון' },
-  { href: '/#services', label: 'אסתמה' },
-  { href: '/#services', label: 'קדחת השחת' },
-  { href: '/#services', label: 'אלרגיות עור' },
-  { href: '/#services', label: 'אימונותרפיה' },
-  { href: '/#services', label: 'ארס חרקים' },
+  'אלרגיות מזון', 'אסתמה', 'קדחת השחת',
+  'אלרגיות עור', 'אימונותרפיה', 'ארס חרקים',
 ]
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear()
+  const year = new Date().getFullYear()
 
   return (
-    <footer className="bg-ink text-white">
+    <footer className="bg-surface-alt border-t border-border">
       <div className="container-main py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-full bg-gold flex items-center justify-center">
-                <span className="text-white text-xs font-serif font-bold">נד</span>
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center shadow-blue">
+                <span className="text-white text-xs font-sans font-bold">נד</span>
               </div>
               <div>
-                <p className="font-serif font-bold text-sm text-white">ד&quot;ר נטלי דניאל</p>
-                <p className="text-xs text-sage">אלרגולוגיה ואימונולוגיה</p>
+                <p className="font-sans font-bold text-sm text-heading">ד&quot;ר נטלי דניאל</p>
+                <p className="text-xs text-muted">אלרגולוגיה ואימונולוגיה</p>
               </div>
             </div>
-            <p className="text-sage text-sm font-sans leading-relaxed">
-              מומחית לאלרגולוגיה ואימונולוגיה קלינית עם מעל 15 שנות ניסיון. מספקת טיפול מקיף ומותאם אישית.
+            <p className="text-muted text-sm font-sans leading-relaxed">
+              מומחית לאלרגולוגיה ואימונולוגיה קלינית עם מעל 15 שנות ניסיון. טיפול מקיף ומותאם אישית.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-serif text-base font-bold text-white mb-4">ניווט מהיר</h3>
-            <ul className="space-y-2">
+            <h3 className="font-sans font-bold text-sm text-heading uppercase tracking-wider mb-4">ניווט</h3>
+            <ul className="space-y-2.5">
               {quickLinks.map((link) => (
-                <li key={link.href + link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-sage hover:text-gold text-sm font-sans transition-colors"
-                  >
+                <li key={link.label}>
+                  <Link href={link.href} className="text-muted hover:text-primary text-sm font-sans transition-colors">
                     {link.label}
                   </Link>
                 </li>
@@ -60,15 +53,12 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h3 className="font-serif text-base font-bold text-white mb-4">תחומי טיפול</h3>
-            <ul className="space-y-2">
-              {serviceLinks.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-sage hover:text-gold text-sm font-sans transition-colors"
-                  >
-                    {link.label}
+            <h3 className="font-sans font-bold text-sm text-heading uppercase tracking-wider mb-4">תחומי טיפול</h3>
+            <ul className="space-y-2.5">
+              {serviceLinks.map((s) => (
+                <li key={s}>
+                  <Link href="/#services" className="text-muted hover:text-primary text-sm font-sans transition-colors">
+                    {s}
                   </Link>
                 </li>
               ))}
@@ -77,34 +67,39 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="font-serif text-base font-bold text-white mb-4">צרו קשר</h3>
-            <address className="not-italic space-y-3">
-              <div>
-                <p className="text-gold text-xs font-sans font-medium uppercase tracking-wider mb-1">ירושלים</p>
-                <p className="text-sage text-sm font-sans">המלך דוד 23, ירושלים</p>
-                <a href="tel:025551234" className="text-sage hover:text-gold text-sm font-sans transition-colors">
-                  02-555-1234
-                </a>
+            <h3 className="font-sans font-bold text-sm text-heading uppercase tracking-wider mb-4">צרו קשר</h3>
+            <address className="not-italic space-y-4">
+              <div className="flex items-start gap-3">
+                <div className="w-8 h-8 rounded-lg bg-primary-light flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span className="text-primary text-xs">📍</span>
+                </div>
+                <div>
+                  <p className="text-xs font-sans font-semibold text-heading mb-0.5">ירושלים</p>
+                  <p className="text-muted text-sm font-sans">המלך דוד 23</p>
+                  <a href="tel:025551234" className="text-primary text-sm font-sans hover:text-primary-dark transition-colors">02-555-1234</a>
+                </div>
               </div>
-              <div>
-                <p className="text-gold text-xs font-sans font-medium uppercase tracking-wider mb-1">מודיעין — מכבי</p>
-                <p className="text-sage text-sm font-sans">עמינדב 1, מודיעין</p>
-                <a href="tel:*3555" className="text-sage hover:text-gold text-sm font-sans transition-colors">
-                  *3555
-                </a>
+              <div className="flex items-start gap-3">
+                <div className="w-8 h-8 rounded-lg bg-primary-light flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span className="text-primary text-xs">🏥</span>
+                </div>
+                <div>
+                  <p className="text-xs font-sans font-semibold text-heading mb-0.5">מודיעין — מכבי</p>
+                  <p className="text-muted text-sm font-sans">עמינדב 1</p>
+                  <a href="tel:*3555" className="text-primary text-sm font-sans hover:text-primary-dark transition-colors">*3555</a>
+                </div>
               </div>
             </address>
           </div>
         </div>
       </div>
 
-      {/* Bottom bar */}
-      <div className="border-t border-white/10">
+      <div className="border-t border-border">
         <div className="container-main py-5 flex flex-col md:flex-row items-center justify-between gap-3">
-          <p className="text-sage/60 text-xs font-sans">
-            © {currentYear} ד&quot;ר נטלי דניאל. כל הזכויות שמורות.
+          <p className="text-muted text-xs font-sans">
+            © {year} ד&quot;ר נטלי דניאל. כל הזכויות שמורות.
           </p>
-          <p className="text-sage/40 text-xs font-sans">
+          <p className="text-muted/60 text-xs font-sans">
             המידע באתר אינו מהווה ייעוץ רפואי. יש להתייעץ עם רופא.
           </p>
         </div>

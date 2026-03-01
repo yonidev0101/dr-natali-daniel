@@ -4,7 +4,7 @@ import RevealWrapper from '@/components/ui/RevealWrapper'
 
 export default function Locations() {
   return (
-    <section id="locations" className="section-padding bg-cream-dark">
+    <section id="locations" className="section-padding bg-white">
       <div className="container-main">
         <RevealWrapper>
           <SectionHeader
@@ -17,64 +17,57 @@ export default function Locations() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {locations.map((loc, i) => (
             <RevealWrapper key={loc.id} delay={i * 0.15}>
-              <div className="bg-white rounded-sm p-8 shadow-sm border border-ink/5 hover:shadow-md transition-shadow h-full">
+              <div className="card p-8 h-full group hover:-translate-y-1 transition-transform duration-300">
                 {/* Header */}
-                <div className="flex items-start justify-between mb-6">
+                <div className="flex items-start gap-4 mb-6">
+                  <div className="w-12 h-12 rounded-xl bg-primary-subtle flex items-center justify-center flex-shrink-0 text-xl group-hover:bg-primary-light transition-colors">
+                    📍
+                  </div>
                   <div>
-                    <h3 className="font-serif text-xl font-bold text-ink">{loc.name}</h3>
-                    <p className="text-gold text-sm font-sans mt-1">{loc.city}</p>
-                  </div>
-                  <div className="w-10 h-10 rounded-full bg-cream flex items-center justify-center flex-shrink-0">
-                    <span className="text-xl">📍</span>
+                    <h3 className="font-sans font-bold text-base text-heading">{loc.name}</h3>
+                    <p className="text-primary text-sm font-sans font-medium mt-0.5">{loc.city}</p>
                   </div>
                 </div>
 
-                {/* Address */}
-                <div className="flex items-start gap-3 mb-4">
-                  <span className="text-gold text-base mt-0.5">📍</span>
-                  <p className="text-ink/70 font-sans text-sm">{loc.address}</p>
-                </div>
-
-                {/* Phone */}
-                <div className="flex items-center gap-3 mb-6">
-                  <span className="text-gold text-base">📞</span>
-                  <a
-                    href={`tel:${loc.phone.replace(/[-\s*]/g, '')}`}
-                    className="text-ink font-sans text-sm font-medium hover:text-gold transition-colors"
-                  >
-                    {loc.phone}
-                  </a>
+                {/* Details */}
+                <div className="space-y-3 mb-6">
+                  <div className="flex items-start gap-3">
+                    <span className="text-muted text-sm mt-0.5">📌</span>
+                    <p className="text-body font-sans text-sm">{loc.address}</p>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="text-muted text-sm">📞</span>
+                    <a
+                      href={`tel:${loc.phone.replace(/[-\s*]/g, '')}`}
+                      className="text-primary font-sans text-sm font-semibold hover:text-primary-dark transition-colors"
+                    >
+                      {loc.phone}
+                    </a>
+                  </div>
                 </div>
 
                 {/* Hours */}
-                <div className="mb-6">
-                  <h4 className="text-xs font-sans font-medium text-gold uppercase tracking-wider mb-3">
-                    שעות קבלה
-                  </h4>
-                  <div className="space-y-1.5">
+                <div className="bg-surface-alt rounded-xl p-4 mb-4">
+                  <p className="text-xs font-sans font-bold text-heading uppercase tracking-wider mb-3">שעות קבלה</p>
+                  <div className="space-y-2">
                     {loc.hours.map((h) => (
                       <div key={h.day} className="flex justify-between items-center">
-                        <span className="text-ink font-sans text-sm">{h.day}</span>
-                        <span className="text-ink/60 font-sans text-sm">{h.time}</span>
+                        <span className="text-body font-sans text-sm">{h.day}</span>
+                        <span className="text-muted font-sans text-sm">{h.time}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                {/* Notes */}
-                <p className="text-ink/50 font-sans text-xs border-t border-ink/10 pt-4 leading-relaxed">
-                  {loc.notes}
-                </p>
+                <p className="text-muted font-sans text-xs leading-relaxed mb-4">{loc.notes}</p>
 
-                {/* Map link */}
                 <a
                   href={loc.mapUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-4 inline-flex items-center gap-2 text-gold text-sm font-sans hover:text-gold-light transition-colors"
+                  className="inline-flex items-center gap-1.5 text-primary text-sm font-sans font-semibold hover:text-primary-dark transition-colors"
                 >
-                  פתח במפה
-                  <span>←</span>
+                  פתח במפה ←
                 </a>
               </div>
             </RevealWrapper>
